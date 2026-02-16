@@ -1,0 +1,25 @@
+CREATE TABLE IF NOT EXISTS admin_update_manifest (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  platform VARCHAR(20) NOT NULL DEFAULT 'android',
+  channel VARCHAR(30) NOT NULL DEFAULT 'stable',
+  status ENUM('draft','published') NOT NULL DEFAULT 'draft',
+  schema_version INT UNSIGNED NOT NULL DEFAULT 1,
+  latest_version VARCHAR(32) NOT NULL,
+  min_supported_version VARCHAR(32) NOT NULL,
+  update_mode ENUM('soft','hard') NOT NULL DEFAULT 'soft',
+  download_url VARCHAR(500) NOT NULL,
+  release_notes_url VARCHAR(500) NULL,
+  sha256 VARCHAR(128) NULL,
+  rollout_percent TINYINT UNSIGNED NOT NULL DEFAULT 100,
+  cache_ttl_seconds INT UNSIGNED NOT NULL DEFAULT 3600,
+  etag VARCHAR(64) NOT NULL,
+  updated_by BIGINT UNSIGNED NULL,
+  published_at TIMESTAMP NULL DEFAULT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY idx_aum_platform_channel_status (platform, channel, status),
+  KEY idx_aum_updated_at (updated_at),
+  UNIQUE KEY uq_aum_draft (platform, channel, status),
+  CONSTRAINT fk_aum_updated_by FOREIGN KEY (updated_by) REFERENCES admin_users(id)
+    ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

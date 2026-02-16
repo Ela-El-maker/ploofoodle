@@ -1,0 +1,6 @@
+-- Deprecated legacy file.
+-- Use:
+--   001_admin_users.sql
+--   002_admin_config_bundle.sql
+--   003_admin_update_manifest.sql
+--   004_admin_audit_log.sql
