@@ -62,7 +62,7 @@ ob_start();
     </div>
   <?php endif; ?>
 
-  <form id="bootstrap-config-form" method="post" action="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/config">
+  <form id="bootstrap-config-form" method="post" action="<?= htmlspecialchars(ploo_route_url('/admin/config'), ENT_QUOTES, 'UTF-8') ?>">
     <input type="hidden" name="csrf" value="<?= htmlspecialchars((string)$csrfToken, ENT_QUOTES, 'UTF-8') ?>" />
 
     <div class="form-grid">
@@ -155,10 +155,10 @@ ob_start();
     <p class="muted">Allowlist keys: feature_flags, tuning, welcome_slides, support_links, env_label, cache_ttl_seconds</p>
 
     <div class="btn-row">
-      <button class="btn secondary" type="submit" formaction="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/config/save-draft">Save Draft</button>
-      <button class="btn primary" type="submit" formaction="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/config/publish" onclick="return confirm('Publish this config to mobile clients?');">Publish</button>
-      <button class="btn danger" type="submit" formaction="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/config/reset-draft" onclick="return confirm('Reset draft to published values?');">Reset Draft</button>
-      <button class="btn danger" type="submit" formaction="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/config/delete-draft" onclick="return confirm('Delete current draft?');">Delete Draft</button>
+      <button class="btn secondary" type="submit" formaction="<?= htmlspecialchars(ploo_route_url('/admin/config/save-draft'), ENT_QUOTES, 'UTF-8') ?>">Save Draft</button>
+      <button class="btn primary" type="submit" formaction="<?= htmlspecialchars(ploo_route_url('/admin/config/publish'), ENT_QUOTES, 'UTF-8') ?>" onclick="return confirm('Publish this config to mobile clients?');">Publish</button>
+      <button class="btn danger" type="submit" formaction="<?= htmlspecialchars(ploo_route_url('/admin/config/reset-draft'), ENT_QUOTES, 'UTF-8') ?>" onclick="return confirm('Reset draft to published values?');">Reset Draft</button>
+      <button class="btn danger" type="submit" formaction="<?= htmlspecialchars(ploo_route_url('/admin/config/delete-draft'), ENT_QUOTES, 'UTF-8') ?>" onclick="return confirm('Delete current draft?');">Delete Draft</button>
     </div>
   </form>
 </section>

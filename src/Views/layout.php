@@ -9,7 +9,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?> | Ploofoodle</title>
-  <link rel="stylesheet" href="/Pandipoodle/Ploofoodle/public/assets/admin.css" />
+  <link rel="stylesheet" href="<?= htmlspecialchars(ploo_base_path() . '/assets/admin.css', ENT_QUOTES, 'UTF-8') ?>" />
 </head>
 <body>
   <div class="admin-shell">

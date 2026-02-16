@@ -8,7 +8,7 @@ $csrfToken = $csrfToken ?? '';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ploofoodle Login</title>
-  <link rel="stylesheet" href="/Pandipoodle/Ploofoodle/public/assets/admin.css" />
+  <link rel="stylesheet" href="<?= htmlspecialchars(ploo_base_path() . '/assets/admin.css', ENT_QUOTES, 'UTF-8') ?>" />
 </head>
 <body class="login-shell">
   <main class="login-wrap">
@@ -22,7 +22,7 @@ $csrfToken = $csrfToken ?? '';
       <h1>Ploofoodle Admin</h1>
       <p class="muted">Sign in to manage public mobile config and releases.</p>
 
-      <form method="post" action="/Pandipoodle/Ploofoodle/public/index.php?_route=/auth/login">
+      <form method="post" action="<?= htmlspecialchars(ploo_route_url('/auth/login'), ENT_QUOTES, 'UTF-8') ?>">
         <input type="hidden" name="csrf" value="<?= htmlspecialchars((string)$csrfToken, ENT_QUOTES, 'UTF-8') ?>" />
 
         <div class="field">

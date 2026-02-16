@@ -82,13 +82,13 @@ final class AdminConfigController extends BaseController
 
         if (($user['role'] ?? 'viewer') !== 'admin') {
             \ploo_flash('error', 'Only admin users can modify configuration.');
-            $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/config');
+            $this->response->redirect(ploo_route_url('/admin/config'));
             return;
         }
 
         if (!(new CsrfGuard())->validate($this->request->post('csrf'))) {
             \ploo_flash('error', 'Invalid CSRF token.');
-            $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/config');
+            $this->response->redirect(ploo_route_url('/admin/config'));
             return;
         }
 
@@ -101,9 +101,12 @@ final class AdminConfigController extends BaseController
             \ploo_flash('error', 'Failed to save config: ' . $e->getMessage());
         }
 
-        $platform = urlencode((string)($this->request->post('platform') ?? 'android'));
-        $channel = urlencode((string)($this->request->post('channel') ?? 'stable'));
-        $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/config&platform=' . $platform . '&channel=' . $channel);
+        $platform = (string)($this->request->post('platform') ?? 'android');
+        $channel = (string)($this->request->post('channel') ?? 'stable');
+        $this->response->redirect(\ploo_route_url('/admin/config', [
+            'platform' => $platform,
+            'channel' => $channel,
+        ]));
     }
 
     private function service(): BootstrapConfigService

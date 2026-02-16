@@ -16,7 +16,7 @@ final class RequireAdminAuth
         }
 
         $response = new Response();
-        $response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/auth/login');
+        $response->redirect(\ploo_route_url('/auth/login'));
         return null;
     }
 }

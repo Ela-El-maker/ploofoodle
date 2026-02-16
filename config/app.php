@@ -6,7 +6,7 @@ return [
     'app_name' => 'Ploofoodle',
     'session_key' => 'ploofoodle_auth',
     'csrf_key' => 'ploofoodle_csrf',
-    'base_path' => '/Pandipoodle/Ploofoodle/public',
+    'base_path' => getenv('PLOOFOODLE_BASE_PATH') ?: '',
     'public_cache_max_age' => 3600,
     'public_cache_swr' => 86400,
     'default_platform' => 'android',

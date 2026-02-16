@@ -74,6 +74,24 @@ function ploo_config(string $group): array
     return $GLOBALS['ploo_config'][$group] ?? [];
 }
 
+function ploo_base_path(): string
+{
+    $configured = trim((string)(ploo_config('app')['base_path'] ?? ''));
+    if ($configured !== '') {
+        return '/' . trim($configured, '/');
+    }
+
+    $scriptName = (string)($_SERVER['SCRIPT_NAME'] ?? '/index.php');
+    $base = rtrim(str_replace('\\', '/', dirname($scriptName)), '/');
+    return $base === '' ? '' : $base;
+}
+
+function ploo_route_url(string $route, array $query = []): string
+{
+    $query = array_merge(['_route' => $route], $query);
+    return ploo_base_path() . '/index.php?' . http_build_query($query);
+}
+
 $appConfig = ploo_config('app');
 $secureCookie = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
 

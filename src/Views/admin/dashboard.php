@@ -29,9 +29,9 @@ ob_start();
 <section class="card">
   <div class="card-head"><h3>Quick Actions</h3></div>
   <div class="btn-row">
-    <a class="btn primary" href="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/config">Edit Bootstrap Config</a>
-    <a class="btn secondary" href="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases">Manage Releases</a>
-    <a class="btn secondary" href="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/audit">View Audit Log</a>
+    <a class="btn primary" href="<?= htmlspecialchars(ploo_route_url('/admin/config'), ENT_QUOTES, 'UTF-8') ?>">Edit Bootstrap Config</a>
+    <a class="btn secondary" href="<?= htmlspecialchars(ploo_route_url('/admin/releases'), ENT_QUOTES, 'UTF-8') ?>">Manage Releases</a>
+    <a class="btn secondary" href="<?= htmlspecialchars(ploo_route_url('/admin/audit'), ENT_QUOTES, 'UTF-8') ?>">View Audit Log</a>
   </div>
 </section>
 

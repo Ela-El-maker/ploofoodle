@@ -9,10 +9,10 @@ ob_start();
 <section class="card">
   <div class="card-head">
     <h3><?= $mode === 'edit' ? 'Edit Release' : 'Create Release' ?></h3>
-    <a href="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases">Back to list</a>
+    <a href="<?= htmlspecialchars(ploo_route_url('/admin/releases'), ENT_QUOTES, 'UTF-8') ?>">Back to list</a>
   </div>
 
-  <form method="post" action="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases">
+  <form method="post" action="<?= htmlspecialchars(ploo_route_url('/admin/releases'), ENT_QUOTES, 'UTF-8') ?>">
     <input type="hidden" name="csrf" value="<?= htmlspecialchars((string)$csrfToken, ENT_QUOTES, 'UTF-8') ?>" />
     <div class="form-grid">
       <div class="field">
@@ -60,7 +60,7 @@ ob_start();
     <div class="btn-row">
       <button class="btn secondary" type="submit" name="action" value="save_draft">Save Draft</button>
       <button class="btn primary" type="submit" name="action" value="publish">Publish Now</button>
-      <a class="btn danger" href="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases">Cancel</a>
+      <a class="btn danger" href="<?= htmlspecialchars(ploo_route_url('/admin/releases'), ENT_QUOTES, 'UTF-8') ?>">Cancel</a>
     </div>
   </form>
 </section>

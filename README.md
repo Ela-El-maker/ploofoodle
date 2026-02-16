@@ -7,17 +7,21 @@ Minimal PHP admin system for managing mobile bootstrap config and update metadat
 - Writes only to `admin_*` tables.
 - Does not modify Plonkadoodle code/endpoints.
 - Public read endpoints:
-  - `GET /Pandipoodle/Ploofoodle/public/index.php?_route=/mobile/bootstrap&platform=android&channel=stable`
-  - `GET /Pandipoodle/Ploofoodle/public/index.php?_route=/mobile/update&platform=android&channel=stable`
+  - `GET {base_path}/index.php?_route=/mobile/bootstrap&platform=android&channel=stable`
+  - `GET {base_path}/index.php?_route=/mobile/update&platform=android&channel=stable`
+  - `GET {base_path}/index.php?_route=/health`
+
+`{base_path}` is auto-detected from `SCRIPT_NAME` (works for local/live), or can be overridden via `PLOOFOODLE_BASE_PATH`.
 
 ## Admin routes
-- `GET /Pandipoodle/Ploofoodle/public/index.php?_route=/auth/login`
-- `POST /Pandipoodle/Ploofoodle/public/index.php?_route=/auth/login`
-- `POST /Pandipoodle/Ploofoodle/public/index.php?_route=/auth/logout`
-- `GET /Pandipoodle/Ploofoodle/public/index.php?_route=/admin/config`
-- `POST /Pandipoodle/Ploofoodle/public/index.php?_route=/admin/config`
-- `GET /Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases`
-- `POST /Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases`
+- `GET {base_path}/index.php?_route=/auth/login`
+- `POST {base_path}/index.php?_route=/auth/login`
+- `POST {base_path}/index.php?_route=/auth/logout`
+- `GET {base_path}/index.php?_route=/admin`
+- `GET {base_path}/index.php?_route=/admin/config`
+- `POST {base_path}/index.php?_route=/admin/config`
+- `GET {base_path}/index.php?_route=/admin/releases`
+- `POST {base_path}/index.php?_route=/admin/releases`
 
 ## Public endpoint behavior
 - Draft/publish model: only `status='published'` rows are served.
@@ -43,11 +47,14 @@ Unknown keys are rejected before publish.
 
 Used env vars:
 - `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`, `DB_CHARSET`
+- `PLOOFOODLE_BASE_PATH` (optional explicit URL base path override)
 
 ## Admin authentication
 - Session + CSRF.
 - Primary auth source: `admin_users` table.
-- Fallback seed admin from env (skeleton-only bootstrap path):
+- Seed admin fallback is disabled by default and only allowed in local/dev/test when explicitly enabled:
+  - `PLOOFOODLE_ALLOW_SEED_LOGIN=true`
+- Seed credentials (used only if fallback is enabled):
   - `PLOOFOODLE_ADMIN_USER`
   - `PLOOFOODLE_ADMIN_PASS`
 

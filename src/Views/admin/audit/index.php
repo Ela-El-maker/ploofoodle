@@ -7,7 +7,7 @@ ob_start();
 <section class="card">
   <div class="card-head"><h3>Audit Log</h3></div>
 
-  <form method="get" action="/Pandipoodle/Ploofoodle/public/index.php" class="filters">
+  <form method="get" action="<?= htmlspecialchars(ploo_route_url('/admin/audit'), ENT_QUOTES, 'UTF-8') ?>" class="filters">
     <input type="hidden" name="_route" value="/admin/audit" />
     <input type="text" name="actor" value="<?= htmlspecialchars((string)$filters['actor'], ENT_QUOTES, 'UTF-8') ?>" placeholder="Actor" />
     <select name="entity_type">
@@ -35,7 +35,7 @@ ob_start();
           <td><?= htmlspecialchars((string)($row['entity_id'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
           <td><?= htmlspecialchars((string)$row['created_at'], ENT_QUOTES, 'UTF-8') ?></td>
           <td><?= htmlspecialchars((string)($row['ip_address'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
-          <td><a href="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/audit/view&id=<?= (int)$row['id'] ?>">View</a></td>
+          <td><a href="<?= htmlspecialchars(ploo_route_url('/admin/audit/view', ['id' => (int)$row['id']]), ENT_QUOTES, 'UTF-8') ?>">View</a></td>
         </tr>
       <?php endforeach; endif; ?>
       </tbody>

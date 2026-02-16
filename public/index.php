@@ -12,6 +12,7 @@ use Ploofoodle\Controllers\AdminConfigController;
 use Ploofoodle\Controllers\AdminReleaseController;
 use Ploofoodle\Controllers\MobileBootstrapController;
 use Ploofoodle\Controllers\MobileUpdateController;
+use Ploofoodle\Controllers\HealthController;
 
 $router = new Router();
 
@@ -43,5 +44,6 @@ $router->get('/admin/audit/view', [AdminAuditController::class, 'view']);
 
 $router->get('/mobile/bootstrap', [MobileBootstrapController::class, 'show']);
 $router->get('/mobile/update', [MobileUpdateController::class, 'show']);
+$router->get('/health', [HealthController::class, 'show']);
 
 $router->dispatch();

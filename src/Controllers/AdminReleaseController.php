@@ -87,13 +87,13 @@ final class AdminReleaseController extends BaseController
 
         if (($user['role'] ?? 'viewer') !== 'admin') {
             \ploo_flash('error', 'Only admin users can modify release metadata.');
-            $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases');
+            $this->response->redirect(ploo_route_url('/admin/releases'));
             return;
         }
 
         if (!(new CsrfGuard())->validate($this->request->post('csrf'))) {
             \ploo_flash('error', 'Invalid CSRF token.');
-            $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases');
+            $this->response->redirect(ploo_route_url('/admin/releases'));
             return;
         }
 
@@ -104,7 +104,7 @@ final class AdminReleaseController extends BaseController
             \ploo_flash('error', 'Failed to save release metadata: ' . $e->getMessage());
         }
 
-        $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases');
+        $this->response->redirect(ploo_route_url('/admin/releases'));
     }
 
     public function publish(): void
@@ -125,19 +125,19 @@ final class AdminReleaseController extends BaseController
         }
         if (($user['role'] ?? 'viewer') !== 'admin') {
             \ploo_flash('error', 'Only admin users can delete releases.');
-            $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases');
+            $this->response->redirect(ploo_route_url('/admin/releases'));
             return;
         }
         if (!(new CsrfGuard())->validate($this->request->post('csrf'))) {
             \ploo_flash('error', 'Invalid CSRF token.');
-            $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases');
+            $this->response->redirect(ploo_route_url('/admin/releases'));
             return;
         }
 
         $id = (int)($this->request->post('id', '0') ?? '0');
         if ($id <= 0) {
             \ploo_flash('error', 'Invalid release id.');
-            $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases');
+            $this->response->redirect(ploo_route_url('/admin/releases'));
             return;
         }
 
@@ -148,7 +148,7 @@ final class AdminReleaseController extends BaseController
             \ploo_flash('error', 'Delete failed: ' . $e->getMessage());
         }
 
-        $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases');
+        $this->response->redirect(ploo_route_url('/admin/releases'));
     }
 
     private function applyRowAction(string $action): void
@@ -159,12 +159,12 @@ final class AdminReleaseController extends BaseController
         }
         if (($user['role'] ?? 'viewer') !== 'admin') {
             \ploo_flash('error', 'Only admin users can modify release metadata.');
-            $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases');
+            $this->response->redirect(ploo_route_url('/admin/releases'));
             return;
         }
         if (!(new CsrfGuard())->validate($this->request->post('csrf'))) {
             \ploo_flash('error', 'Invalid CSRF token.');
-            $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases');
+            $this->response->redirect(ploo_route_url('/admin/releases'));
             return;
         }
 
@@ -172,7 +172,7 @@ final class AdminReleaseController extends BaseController
         $row = $id > 0 ? (new UpdateManifestRepository(Db::pdo()))->findById($id) : null;
         if (!is_array($row)) {
             \ploo_flash('error', 'Release row not found.');
-            $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases');
+            $this->response->redirect(ploo_route_url('/admin/releases'));
             return;
         }
 
@@ -198,7 +198,7 @@ final class AdminReleaseController extends BaseController
             \ploo_flash('error', 'Action failed: ' . $e->getMessage());
         }
 
-        $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases');
+        $this->response->redirect(ploo_route_url('/admin/releases'));
     }
 
     private function renderForm(string $mode, ?array $row): void

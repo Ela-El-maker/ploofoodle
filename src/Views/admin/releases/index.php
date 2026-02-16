@@ -9,10 +9,10 @@ ob_start();
 <section class="card">
   <div class="card-head">
     <h3>Releases</h3>
-    <a class="btn primary" href="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases/create">Create Release</a>
+    <a class="btn primary" href="<?= htmlspecialchars(ploo_route_url('/admin/releases/create'), ENT_QUOTES, 'UTF-8') ?>">Create Release</a>
   </div>
 
-  <form method="get" action="/Pandipoodle/Ploofoodle/public/index.php" class="filters">
+  <form method="get" action="<?= htmlspecialchars(ploo_route_url('/admin/releases'), ENT_QUOTES, 'UTF-8') ?>" class="filters">
     <input type="hidden" name="_route" value="/admin/releases" />
     <select name="platform">
       <option value="">All platforms</option>
@@ -56,15 +56,15 @@ ob_start();
           <td><span class="badge <?= htmlspecialchars((string)$r['status'], ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars((string)$r['status'], ENT_QUOTES, 'UTF-8') ?></span></td>
           <td><?= htmlspecialchars((string)$r['updated_at'], ENT_QUOTES, 'UTF-8') ?></td>
           <td>
-            <a href="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases/view&id=<?= (int)$r['id'] ?>">View</a>
+            <a href="<?= htmlspecialchars(ploo_route_url('/admin/releases/view', ['id' => (int)$r['id']]), ENT_QUOTES, 'UTF-8') ?>">View</a>
             |
-            <a href="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases/edit&id=<?= (int)$r['id'] ?>">Edit</a>
-            <form method="post" action="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases/<?= $r['status'] === 'published' ? 'unpublish' : 'publish' ?>" style="display:inline" onsubmit="return confirm('Apply action for this manifest?');">
+            <a href="<?= htmlspecialchars(ploo_route_url('/admin/releases/edit', ['id' => (int)$r['id']]), ENT_QUOTES, 'UTF-8') ?>">Edit</a>
+            <form method="post" action="<?= htmlspecialchars(ploo_route_url('/admin/releases/' . ($r['status'] === 'published' ? 'unpublish' : 'publish')), ENT_QUOTES, 'UTF-8') ?>" style="display:inline" onsubmit="return confirm('Apply action for this manifest?');">
               <input type="hidden" name="csrf" value="<?= htmlspecialchars((string)$csrfToken, ENT_QUOTES, 'UTF-8') ?>" />
               <input type="hidden" name="id" value="<?= (int)$r['id'] ?>" />
               <button class="btn secondary" type="submit"><?= $r['status'] === 'published' ? 'Unpublish' : 'Publish' ?></button>
             </form>
-            <form method="post" action="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases/delete" style="display:inline" onsubmit="return confirm('Delete this manifest row?');">
+            <form method="post" action="<?= htmlspecialchars(ploo_route_url('/admin/releases/delete'), ENT_QUOTES, 'UTF-8') ?>" style="display:inline" onsubmit="return confirm('Delete this manifest row?');">
               <input type="hidden" name="csrf" value="<?= htmlspecialchars((string)$csrfToken, ENT_QUOTES, 'UTF-8') ?>" />
               <input type="hidden" name="id" value="<?= (int)$r['id'] ?>" />
               <button class="btn danger" type="submit">Delete</button>

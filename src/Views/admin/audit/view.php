@@ -6,7 +6,7 @@ ob_start();
 <section class="card">
   <div class="card-head">
     <h3>Audit Event Detail</h3>
-    <a href="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/audit">Back to audit list</a>
+    <a href="<?= htmlspecialchars(ploo_route_url('/admin/audit'), ENT_QUOTES, 'UTF-8') ?>">Back to audit list</a>
   </div>
 
   <?php if (!is_array($row)): ?>

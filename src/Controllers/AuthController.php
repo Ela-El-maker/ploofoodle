@@ -25,7 +25,7 @@ final class AuthController extends BaseController
         $csrf = $this->request->post('csrf');
         if (!\ploo_validate_csrf($csrf)) {
             \ploo_flash('error', 'Invalid CSRF token.');
-            $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/auth/login');
+            $this->response->redirect(\ploo_route_url('/auth/login'));
             return;
         }
 
@@ -33,7 +33,7 @@ final class AuthController extends BaseController
         $password = (string)$this->request->post('password', '');
 
         $user = $this->attemptDbLogin($username, $password);
-        if ($user === null) {
+        if ($user === null && $this->allowSeedLogin()) {
             $fallbackUser = ploo_config('auth')['seed_admin_username'] ?? 'admin';
             $fallbackPass = ploo_config('auth')['seed_admin_password'] ?? 'change-me-now';
 
@@ -44,7 +44,7 @@ final class AuthController extends BaseController
 
         if ($user === null) {
             \ploo_flash('error', 'Invalid credentials.');
-            $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/auth/login');
+            $this->response->redirect(\ploo_route_url('/auth/login'));
             return;
         }
 
@@ -66,14 +66,14 @@ final class AuthController extends BaseController
         ]);
 
         \ploo_flash('success', 'Signed in.');
-        $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin');
+        $this->response->redirect(\ploo_route_url('/admin'));
     }
 
     public function logout(): void
     {
         if (!\ploo_validate_csrf($this->request->post('csrf'))) {
             \ploo_flash('error', 'Invalid CSRF token.');
-            $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/admin');
+            $this->response->redirect(\ploo_route_url('/admin'));
             return;
         }
 
@@ -93,7 +93,7 @@ final class AuthController extends BaseController
 
         \ploo_logout_user();
         \ploo_flash('success', 'Signed out.');
-        $this->response->redirect('/Pandipoodle/Ploofoodle/public/index.php?_route=/auth/login');
+        $this->response->redirect(\ploo_route_url('/auth/login'));
     }
 
     private function attemptDbLogin(string $username, string $password): ?array
@@ -123,5 +123,16 @@ final class AuthController extends BaseController
     private function audit(): AuditService
     {
         return new AuditService(new AuditLogRepository(Db::pdo()));
+    }
+
+    private function allowSeedLogin(): bool
+    {
+        $allowSeed = (bool)(ploo_config('auth')['allow_seed_login'] ?? false);
+        if (!$allowSeed) {
+            return false;
+        }
+
+        $appEnv = strtolower((string)(getenv('APP_ENV') ?: $_ENV['APP_ENV'] ?? 'prod'));
+        return in_array($appEnv, ['dev', 'test', 'local'], true);
     }
 }

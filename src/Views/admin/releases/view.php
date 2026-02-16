@@ -6,7 +6,7 @@ ob_start();
 <section class="card">
   <div class="card-head">
     <h3>Release Manifest Details</h3>
-    <a href="/Pandipoodle/Ploofoodle/public/index.php?_route=/admin/releases">Back to list</a>
+    <a href="<?= htmlspecialchars(ploo_route_url('/admin/releases'), ENT_QUOTES, 'UTF-8') ?>">Back to list</a>
   </div>
 
   <?php if (empty($row)): ?>
