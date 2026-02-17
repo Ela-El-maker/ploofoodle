@@ -46,8 +46,18 @@ ob_start();
           <option value="hard" <?= $modeVal === 'hard' ? 'selected' : '' ?>>hard</option>
         </select>
       </div>
+      <div class="field"><label>Update source</label>
+        <?php $sourceVal = (string)($row['update_source'] ?? 'apk'); ?>
+        <select name="update_source">
+          <option value="apk" <?= $sourceVal === 'apk' ? 'selected' : '' ?>>APK direct download</option>
+          <option value="play" <?= $sourceVal === 'play' ? 'selected' : '' ?>>Google Play Store</option>
+          <option value="appstore" <?= $sourceVal === 'appstore' ? 'selected' : '' ?>>Apple App Store</option>
+          <option value="web" <?= $sourceVal === 'web' ? 'selected' : '' ?>>Web release page</option>
+        </select>
+      </div>
       <div class="field"><label>Rollout %</label><input type="number" min="0" max="100" name="rollout_percent" value="<?= htmlspecialchars((string)($row['rollout_percent'] ?? 100), ENT_QUOTES, 'UTF-8') ?>" /></div>
-      <div class="field"><label>Download URL</label><input name="download_url" value="<?= htmlspecialchars((string)($row['download_url'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" required /></div>
+      <div class="field"><label>Download URL (APK source)</label><input name="download_url" value="<?= htmlspecialchars((string)($row['download_url'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" /></div>
+      <div class="field"><label>Distribution URL (Store/Web source)</label><input name="distribution_url" value="<?= htmlspecialchars((string)($row['distribution_url'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" /></div>
       <div class="field"><label>Release notes URL</label><input name="release_notes_url" value="<?= htmlspecialchars((string)($row['release_notes_url'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" /></div>
       <div class="field"><label>SHA256</label><input name="sha256" value="<?= htmlspecialchars((string)($row['sha256'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" /></div>
       <div class="field"><label>Cache TTL seconds</label><input type="number" min="60" max="86400" name="cache_ttl_seconds" value="<?= htmlspecialchars((string)($row['cache_ttl_seconds'] ?? 3600), ENT_QUOTES, 'UTF-8') ?>" /></div>

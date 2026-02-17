@@ -20,6 +20,7 @@ ob_start();
         <p><strong>Latest:</strong> <?= htmlspecialchars((string)$row['latest_version'], ENT_QUOTES, 'UTF-8') ?></p>
         <p><strong>Min Supported:</strong> <?= htmlspecialchars((string)$row['min_supported_version'], ENT_QUOTES, 'UTF-8') ?></p>
         <p><strong>Mode:</strong> <span class="badge <?= htmlspecialchars((string)$row['update_mode'], ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars((string)$row['update_mode'], ENT_QUOTES, 'UTF-8') ?></span></p>
+        <p><strong>Source:</strong> <span class="badge info"><?= htmlspecialchars((string)($row['update_source'] ?? 'apk'), ENT_QUOTES, 'UTF-8') ?></span></p>
       </div>
       <div class="card">
         <p><strong>Rollout:</strong> <?= (int)($row['rollout_percent'] ?? 0) ?>%</p>
@@ -27,6 +28,13 @@ ob_start();
         <p><strong>Published At:</strong> <?= htmlspecialchars((string)($row['published_at'] ?? 'N/A'), ENT_QUOTES, 'UTF-8') ?></p>
         <p><strong>Updated At:</strong> <?= htmlspecialchars((string)($row['updated_at'] ?? 'N/A'), ENT_QUOTES, 'UTF-8') ?></p>
         <p><strong>Download URL:</strong><br><a href="<?= htmlspecialchars((string)($row['download_url'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" target="_blank" rel="noreferrer">Open</a></p>
+        <p><strong>Distribution URL:</strong><br>
+          <?php if (!empty($row['distribution_url'])): ?>
+            <a href="<?= htmlspecialchars((string)$row['distribution_url'], ENT_QUOTES, 'UTF-8') ?>" target="_blank" rel="noreferrer">Open</a>
+          <?php else: ?>
+            <span class="muted">N/A</span>
+          <?php endif; ?>
+        </p>
       </div>
     </div>
   <?php endif; ?>

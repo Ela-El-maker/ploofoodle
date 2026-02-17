@@ -26,7 +26,11 @@ VALUES
       JSON_OBJECT('id','balance','title','Track credits','body','See credits and updates in real time.'),
       JSON_OBJECT('id','profile','title','Manage account','body','View account status and support links quickly.')
     ),
-    'support_links', JSON_OBJECT('help','https://example.com/help','terms','https://example.com/terms','status','https://example.com/status'),
+    'support_links', JSON_OBJECT(
+      'help','https://up-skill.felixeladi.co.ke/help',
+      'terms','https://up-skill.felixeladi.co.ke/terms',
+      'status','https://up-skill.felixeladi.co.ke/status'
+    ),
     'env_label', 'prod',
     'cache_ttl_seconds', 3600
   ),
@@ -45,7 +49,11 @@ VALUES
       JSON_OBJECT('id','balance','title','Track credits','body','See credits and updates in real time.'),
       JSON_OBJECT('id','profile','title','Manage account','body','View account status and support links quickly.')
     ),
-    'support_links', JSON_OBJECT('help','https://example.com/help','terms','https://example.com/terms','status','https://example.com/status'),
+    'support_links', JSON_OBJECT(
+      'help','https://up-skill.felixeladi.co.ke/help',
+      'terms','https://up-skill.felixeladi.co.ke/terms',
+      'status','https://up-skill.felixeladi.co.ke/status'
+    ),
     'env_label', 'prod',
     'cache_ttl_seconds', 3600
   ),
@@ -62,7 +70,11 @@ VALUES
     'welcome_slides', JSON_ARRAY(
       JSON_OBJECT('id','pay','title','Upgrade your access','body','Purchase premium access from supported payment methods.')
     ),
-    'support_links', JSON_OBJECT('help','https://example.com/help-ios','terms','https://example.com/terms'),
+    'support_links', JSON_OBJECT(
+      'help','https://up-skill.felixeladi.co.ke/help',
+      'terms','https://up-skill.felixeladi.co.ke/terms',
+      'status','https://up-skill.felixeladi.co.ke/status'
+    ),
     'env_label', 'prod',
     'cache_ttl_seconds', 3600
   ),
@@ -79,7 +91,11 @@ VALUES
     'welcome_slides', JSON_ARRAY(
       JSON_OBJECT('id','beta','title','Beta channel','body','You are seeing beta configuration.')
     ),
-    'support_links', JSON_OBJECT('help','https://example.com/help-beta'),
+    'support_links', JSON_OBJECT(
+      'help','https://up-skill.felixeladi.co.ke/help',
+      'terms','https://up-skill.felixeladi.co.ke/terms',
+      'status','https://up-skill.felixeladi.co.ke/status'
+    ),
     'env_label', 'beta',
     'cache_ttl_seconds', 900
   ),
@@ -98,12 +114,14 @@ ON DUPLICATE KEY UPDATE
 
 -- 3) admin_update_manifest (draft + published)
 INSERT INTO admin_update_manifest
-(platform, channel, status, schema_version, latest_version, min_supported_version, update_mode, download_url, release_notes_url, sha256, rollout_percent, cache_ttl_seconds, etag, updated_by, published_at)
+(platform, channel, status, schema_version, latest_version, min_supported_version, update_mode, update_source, download_url, distribution_url, release_notes_url, sha256, rollout_percent, cache_ttl_seconds, etag, updated_by, published_at)
 VALUES
 (
   'android','stable','draft',1,
   '1.2.4','1.1.0','soft',
+  'apk',
   'https://github.com/example/pimpodoodle/releases/download/v1.2.4/pimpodoodle-android.apk',
+  NULL,
   'https://github.com/example/pimpodoodle/releases/tag/v1.2.4',
   NULL,
   100,
@@ -115,7 +133,9 @@ VALUES
 (
   'android','stable','published',1,
   '1.2.3','1.1.0','soft',
+  'apk',
   'https://github.com/example/pimpodoodle/releases/download/v1.2.3/pimpodoodle-android.apk',
+  NULL,
   'https://github.com/example/pimpodoodle/releases/tag/v1.2.3',
   NULL,
   80,
@@ -127,6 +147,8 @@ VALUES
 (
   'ios','stable','published',1,
   '1.2.1','1.1.0','soft',
+  'appstore',
+  'https://apps.apple.com/app/id000000000',
   'https://apps.apple.com/app/id000000000',
   'https://example.com/release-notes/ios-1.2.1',
   NULL,
@@ -139,7 +161,9 @@ VALUES
 (
   'android','beta','published',1,
   '1.3.0-beta.2','1.1.0','soft',
+  'apk',
   'https://github.com/example/pimpodoodle/releases/download/v1.3.0-beta.2/pimpodoodle-android-beta.apk',
+  NULL,
   'https://github.com/example/pimpodoodle/releases/tag/v1.3.0-beta.2',
   NULL,
   25,
@@ -153,7 +177,9 @@ ON DUPLICATE KEY UPDATE
   latest_version = VALUES(latest_version),
   min_supported_version = VALUES(min_supported_version),
   update_mode = VALUES(update_mode),
+  update_source = VALUES(update_source),
   download_url = VALUES(download_url),
+  distribution_url = VALUES(distribution_url),
   release_notes_url = VALUES(release_notes_url),
   sha256 = VALUES(sha256),
   rollout_percent = VALUES(rollout_percent),

@@ -39,12 +39,12 @@ ob_start();
     <table>
       <thead>
         <tr>
-          <th>Platform</th><th>Channel</th><th>Latest</th><th>Min</th><th>Mode</th><th>Rollout</th><th>Status</th><th>Updated</th><th>Actions</th>
+          <th>Platform</th><th>Channel</th><th>Latest</th><th>Min</th><th>Mode</th><th>Source</th><th>Rollout</th><th>Status</th><th>Updated</th><th>Actions</th>
         </tr>
       </thead>
       <tbody>
       <?php if (empty($rows)): ?>
-        <tr><td colspan="9" class="muted">No manifests found.</td></tr>
+        <tr><td colspan="10" class="muted">No manifests found.</td></tr>
       <?php else: foreach ($rows as $r): ?>
         <tr>
           <td><?= htmlspecialchars((string)$r['platform'], ENT_QUOTES, 'UTF-8') ?></td>
@@ -52,6 +52,7 @@ ob_start();
           <td><?= htmlspecialchars((string)$r['latest_version'], ENT_QUOTES, 'UTF-8') ?></td>
           <td><?= htmlspecialchars((string)$r['min_supported_version'], ENT_QUOTES, 'UTF-8') ?></td>
           <td><span class="badge <?= htmlspecialchars((string)$r['update_mode'], ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars((string)$r['update_mode'], ENT_QUOTES, 'UTF-8') ?></span></td>
+          <td><span class="badge info"><?= htmlspecialchars((string)($r['update_source'] ?? 'apk'), ENT_QUOTES, 'UTF-8') ?></span></td>
           <td><?= (int)$r['rollout_percent'] ?>%</td>
           <td><span class="badge <?= htmlspecialchars((string)$r['status'], ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars((string)$r['status'], ENT_QUOTES, 'UTF-8') ?></span></td>
           <td><?= htmlspecialchars((string)$r['updated_at'], ENT_QUOTES, 'UTF-8') ?></td>

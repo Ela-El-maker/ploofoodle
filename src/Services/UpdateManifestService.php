@@ -29,10 +29,23 @@ final class UpdateManifestService
         $minSupported = $this->semverService->assertValid((string)($input['min_supported_version'] ?? ''));
         $updateMode = strtolower((string)($input['update_mode'] ?? 'soft'));
         $updateMode = in_array($updateMode, ['soft', 'hard'], true) ? $updateMode : 'soft';
+        $updateSource = strtolower(trim((string)($input['update_source'] ?? 'apk')));
+        if (!in_array($updateSource, ['apk', 'play', 'appstore', 'web'], true)) {
+            $updateSource = 'apk';
+        }
 
         $downloadUrl = trim((string)($input['download_url'] ?? ''));
-        if ($downloadUrl === '') {
-            throw new InvalidArgumentException('download_url is required.');
+        $distributionUrl = trim((string)($input['distribution_url'] ?? ''));
+        if ($updateSource === 'apk' && $downloadUrl === '') {
+            throw new InvalidArgumentException('download_url is required for APK source.');
+        }
+        if (in_array($updateSource, ['play', 'appstore', 'web'], true) && $distributionUrl === '') {
+            throw new InvalidArgumentException('distribution_url is required for selected update source.');
+        }
+
+        $effectiveDownloadUrl = $updateSource === 'apk' ? $downloadUrl : $distributionUrl;
+        if ($effectiveDownloadUrl === '') {
+            throw new InvalidArgumentException('A valid update URL is required.');
         }
 
         $releaseNotesUrl = trim((string)($input['release_notes_url'] ?? ''));
@@ -47,11 +60,14 @@ final class UpdateManifestService
             'latest_version' => $latestVersion,
             'min_supported_version' => $minSupported,
             'update_mode' => $updateMode,
+            'update_source' => $updateSource,
             'download_url' => $downloadUrl,
+            'distribution_url' => $distributionUrl,
             'release_notes_url' => $releaseNotesUrl,
             'sha256' => $sha256,
             'rollout_percent' => $rolloutPercent,
             'cache_ttl_seconds' => $cacheTtl,
+            'effective_download_url' => $effectiveDownloadUrl,
         ];
 
         $etag = $this->etagService->build($payloadForEtag, gmdate('c'), $schemaVersion);
@@ -63,7 +79,9 @@ final class UpdateManifestService
             'latest_version' => $latestVersion,
             'min_supported_version' => $minSupported,
             'update_mode' => $updateMode,
+            'update_source' => $updateSource,
             'download_url' => $downloadUrl,
+            'distribution_url' => $distributionUrl !== '' ? $distributionUrl : null,
             'release_notes_url' => $releaseNotesUrl !== '' ? $releaseNotesUrl : null,
             'sha256' => $sha256 !== '' ? $sha256 : null,
             'rollout_percent' => $rolloutPercent,
@@ -151,7 +169,9 @@ final class UpdateManifestService
                 'latest_version' => (string)$row['latest_version'],
                 'min_supported_version' => (string)$row['min_supported_version'],
                 'update_mode' => (string)$row['update_mode'],
-                'download_url' => (string)$row['download_url'],
+                'update_source' => (string)($row['update_source'] ?? 'apk'),
+                'download_url' => $this->resolveManifestUrl($row),
+                'distribution_url' => $row['distribution_url'] ?? null,
                 'release_notes_url' => $row['release_notes_url'],
                 'sha256' => $row['sha256'],
                 'rollout_percent' => (int)$row['rollout_percent'],
@@ -192,5 +212,20 @@ final class UpdateManifestService
             return 86400;
         }
         return $ttl;
+    }
+
+    private function resolveManifestUrl(array $row): string
+    {
+        $source = strtolower((string)($row['update_source'] ?? 'apk'));
+        if ($source === 'apk') {
+            return (string)($row['download_url'] ?? '');
+        }
+
+        $distribution = trim((string)($row['distribution_url'] ?? ''));
+        if ($distribution !== '') {
+            return $distribution;
+        }
+
+        return (string)($row['download_url'] ?? '');
     }
 }

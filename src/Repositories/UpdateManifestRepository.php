@@ -64,7 +64,7 @@ final class UpdateManifestRepository
 
     public function save(string $status, array $data): void
     {
-        $sql = 'INSERT INTO admin_update_manifest (platform, channel, status, schema_version, latest_version, min_supported_version, update_mode, download_url, release_notes_url, sha256, rollout_percent, cache_ttl_seconds, etag, updated_by, published_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE schema_version = VALUES(schema_version), latest_version = VALUES(latest_version), min_supported_version = VALUES(min_supported_version), update_mode = VALUES(update_mode), download_url = VALUES(download_url), release_notes_url = VALUES(release_notes_url), sha256 = VALUES(sha256), rollout_percent = VALUES(rollout_percent), cache_ttl_seconds = VALUES(cache_ttl_seconds), etag = VALUES(etag), updated_by = VALUES(updated_by), published_at = VALUES(published_at)';
+        $sql = 'INSERT INTO admin_update_manifest (platform, channel, status, schema_version, latest_version, min_supported_version, update_mode, update_source, download_url, distribution_url, release_notes_url, sha256, rollout_percent, cache_ttl_seconds, etag, updated_by, published_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE schema_version = VALUES(schema_version), latest_version = VALUES(latest_version), min_supported_version = VALUES(min_supported_version), update_mode = VALUES(update_mode), update_source = VALUES(update_source), download_url = VALUES(download_url), distribution_url = VALUES(distribution_url), release_notes_url = VALUES(release_notes_url), sha256 = VALUES(sha256), rollout_percent = VALUES(rollout_percent), cache_ttl_seconds = VALUES(cache_ttl_seconds), etag = VALUES(etag), updated_by = VALUES(updated_by), published_at = VALUES(published_at)';
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
@@ -75,7 +75,9 @@ final class UpdateManifestRepository
             $data['latest_version'],
             $data['min_supported_version'],
             $data['update_mode'],
+            $data['update_source'],
             $data['download_url'],
+            $data['distribution_url'],
             $data['release_notes_url'],
             $data['sha256'],
             $data['rollout_percent'],
