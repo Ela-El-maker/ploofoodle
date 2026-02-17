@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Up-Skill App | Get Started</title>
+    <meta name="description" content="Install and onboarding guide for Up-Skill mobile app." />
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script defer src="./assets/app.js"></script>
+    <script defer src="./assets/faq.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="./index.html">Up-Skill</a>
+        <nav aria-label="Primary">
+          <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./releases.html">Releases</a></li>
+            <li><a href="./get-started.html" aria-current="page">Get Started</a></li>
+            <li><a href="./support.html">Support</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="section">
+      <div class="container">
+        <h1>Get Started</h1>
+        <p class="muted">Install the app, complete onboarding, and start using your account in minutes.</p>
+
+        <section class="section grid-2">
+          <article class="surface panel">
+            <h2>Install from store</h2>
+            <ol>
+              <li>Tap your platform store button.</li>
+              <li>Install and open the app.</li>
+              <li>Allow requested permissions when prompted.</li>
+            </ol>
+            <div class="cta-row">
+              <a class="btn store-btn" data-platform="android" data-config-link="playStoreUrl" href="https://play.google.com/store">Google Play</a>
+              <a class="btn store-btn" data-platform="ios" data-config-link="appStoreUrl" href="https://www.apple.com/app-store/">App Store</a>
+            </div>
+          </article>
+
+          <article id="manual-apk" class="surface panel hidden">
+            <h2>Manual APK install (Android)</h2>
+            <ol>
+              <li>Download the latest APK from the official link.</li>
+              <li>Open Android settings and allow installs from trusted sources.</li>
+              <li>Install the APK and keep Play Protect enabled.</li>
+              <li>Optional: verify the published SHA256 checksum before install.</li>
+            </ol>
+            <a class="btn btn-secondary" data-manual-apk-link href="/Ploofoodle/public/index.php?_route=/app/open&platform=android&channel=stable">Download APK</a>
+          </article>
+        </section>
+
+        <section class="section surface panel">
+          <h2>First-run guide</h2>
+          <div class="steps">
+            <div class="step"><div>Sign in using your account credentials or session code.</div></div>
+            <div class="step"><div>Open plans and buy credits through M-PESA.</div></div>
+            <div class="step"><div>Confirm balance updates from your dashboard.</div></div>
+            <div class="step"><div>Manage profile details and support links in settings.</div></div>
+          </div>
+        </section>
+
+        <section class="section surface panel">
+          <h2>Troubleshooting FAQ</h2>
+          <div class="accordion" role="region" aria-label="Frequently asked questions">
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-1" id="faq-btn-1">I installed the app but cannot log in</button>
+              <div id="faq-1" class="accordion-panel" role="region" aria-labelledby="faq-btn-1" hidden>
+                <p>Check your internet connection, verify your login details, and confirm your account is active. If needed, reset your credentials from support.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-2" id="faq-btn-2">My M-PESA payment is delayed</button>
+              <div id="faq-2" class="accordion-panel" role="region" aria-labelledby="faq-btn-2" hidden>
+                <p>Most confirmations are quick. Wait a few minutes, then refresh your app balance. If still pending, contact support with your transaction reference.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false" aria-controls="faq-3" id="faq-btn-3">The app says update required</button>
+              <div id="faq-3" class="accordion-panel" role="region" aria-labelledby="faq-btn-3" hidden>
+                <p>Open <a href="./open.html">Smart download</a> and update from your store. For manual installs, use only trusted APK links.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <small>Still stuck? <a href="./support.html">Contact support</a></small>
+      </div>
+    </footer>
+  </body>
+</html>

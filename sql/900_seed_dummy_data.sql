@@ -27,9 +27,9 @@ VALUES
       JSON_OBJECT('id','profile','title','Manage account','body','View account status and support links quickly.')
     ),
     'support_links', JSON_OBJECT(
-      'help','https://up-skill.felixeladi.co.ke/help',
-      'terms','https://up-skill.felixeladi.co.ke/terms',
-      'status','https://up-skill.felixeladi.co.ke/status'
+      'help','https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/support',
+      'terms','https://up-skill.felixeladi.co.ke/Ploofoodle/public/app/terms.html',
+      'status','https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/releases'
     ),
     'env_label', 'prod',
     'cache_ttl_seconds', 3600
@@ -50,9 +50,9 @@ VALUES
       JSON_OBJECT('id','profile','title','Manage account','body','View account status and support links quickly.')
     ),
     'support_links', JSON_OBJECT(
-      'help','https://up-skill.felixeladi.co.ke/help',
-      'terms','https://up-skill.felixeladi.co.ke/terms',
-      'status','https://up-skill.felixeladi.co.ke/status'
+      'help','https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/support',
+      'terms','https://up-skill.felixeladi.co.ke/Ploofoodle/public/app/terms.html',
+      'status','https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/releases'
     ),
     'env_label', 'prod',
     'cache_ttl_seconds', 3600
@@ -71,9 +71,9 @@ VALUES
       JSON_OBJECT('id','pay','title','Upgrade your access','body','Purchase premium access from supported payment methods.')
     ),
     'support_links', JSON_OBJECT(
-      'help','https://up-skill.felixeladi.co.ke/help',
-      'terms','https://up-skill.felixeladi.co.ke/terms',
-      'status','https://up-skill.felixeladi.co.ke/status'
+      'help','https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/support',
+      'terms','https://up-skill.felixeladi.co.ke/Ploofoodle/public/app/terms.html',
+      'status','https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/releases'
     ),
     'env_label', 'prod',
     'cache_ttl_seconds', 3600
@@ -92,9 +92,9 @@ VALUES
       JSON_OBJECT('id','beta','title','Beta channel','body','You are seeing beta configuration.')
     ),
     'support_links', JSON_OBJECT(
-      'help','https://up-skill.felixeladi.co.ke/help',
-      'terms','https://up-skill.felixeladi.co.ke/terms',
-      'status','https://up-skill.felixeladi.co.ke/status'
+      'help','https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/support',
+      'terms','https://up-skill.felixeladi.co.ke/Ploofoodle/public/app/terms.html',
+      'status','https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/releases'
     ),
     'env_label', 'beta',
     'cache_ttl_seconds', 900
@@ -120,9 +120,9 @@ VALUES
   'android','stable','draft',1,
   '1.2.4','1.1.0','soft',
   'apk',
-  'https://github.com/example/pimpodoodle/releases/download/v1.2.4/pimpodoodle-android.apk',
+  'https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/open&platform=android&channel=stable',
   NULL,
-  'https://github.com/example/pimpodoodle/releases/tag/v1.2.4',
+  'https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/releases&platform=android&channel=stable',
   NULL,
   100,
   3600,
@@ -134,9 +134,9 @@ VALUES
   'android','stable','published',1,
   '1.2.3','1.1.0','soft',
   'apk',
-  'https://github.com/example/pimpodoodle/releases/download/v1.2.3/pimpodoodle-android.apk',
+  'https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/open&platform=android&channel=stable',
   NULL,
-  'https://github.com/example/pimpodoodle/releases/tag/v1.2.3',
+  'https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/releases&platform=android&channel=stable',
   NULL,
   80,
   3600,
@@ -148,9 +148,9 @@ VALUES
   'ios','stable','published',1,
   '1.2.1','1.1.0','soft',
   'appstore',
-  'https://apps.apple.com/app/id000000000',
-  'https://apps.apple.com/app/id000000000',
-  'https://example.com/release-notes/ios-1.2.1',
+  'https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/open&platform=ios&channel=stable',
+  'https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/open&platform=ios&channel=stable',
+  'https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/releases&platform=ios&channel=stable',
   NULL,
   100,
   3600,
@@ -162,9 +162,9 @@ VALUES
   'android','beta','published',1,
   '1.3.0-beta.2','1.1.0','soft',
   'apk',
-  'https://github.com/example/pimpodoodle/releases/download/v1.3.0-beta.2/pimpodoodle-android-beta.apk',
+  'https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/open&platform=android&channel=beta',
   NULL,
-  'https://github.com/example/pimpodoodle/releases/tag/v1.3.0-beta.2',
+  'https://up-skill.felixeladi.co.ke/Ploofoodle/public/index.php?_route=/app/releases&platform=android&channel=beta',
   NULL,
   25,
   900,

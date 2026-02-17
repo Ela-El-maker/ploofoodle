@@ -16,10 +16,13 @@ final class Response
         echo json_encode($payload, JSON_UNESCAPED_SLASHES);
     }
 
-    public function html(string $content, int $status = 200): void
+    public function html(string $content, int $status = 200, array $headers = []): void
     {
         http_response_code($status);
         header('Content-Type: text/html; charset=utf-8');
+        foreach ($headers as $name => $value) {
+            header($name . ': ' . $value);
+        }
         echo $content;
     }
 

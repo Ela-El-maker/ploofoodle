@@ -1,0 +1,36 @@
+{
+  "releases": [
+    {
+      "version": "v1.6.2",
+      "date": "2026-02-17",
+      "highlights": [
+        "Improved app startup reliability and reduced first-screen delay.",
+        "Enhanced update prompts and fallback handling for required upgrades.",
+        "Resolved session validation edge cases for expired codes."
+      ],
+      "knownIssues": []
+    },
+    {
+      "version": "v1.6.1",
+      "date": "2026-02-10",
+      "highlights": [
+        "UI polish for profile and plan screens.",
+        "Improved error feedback during payment confirmation.",
+        "Minor performance optimizations in update checks."
+      ],
+      "knownIssues": [
+        "A small number of users may need to restart app after network reconnect."
+      ]
+    },
+    {
+      "version": "v1.6.0",
+      "date": "2026-01-29",
+      "highlights": [
+        "Introduced update provider strategy for platform-specific update flow.",
+        "Added improved app configuration loading behavior.",
+        "General stability fixes and logging improvements."
+      ],
+      "knownIssues": []
+    }
+  ]
+}

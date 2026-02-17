@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Up-Skill App | Download & Get Started</title>
+    <meta name="description" content="Get the Up-Skill mobile app, view latest releases, and follow installation and onboarding guides." />
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script defer src="./assets/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="./index.html">Up-Skill</a>
+        <nav aria-label="Primary">
+          <ul class="nav-links">
+            <li><a href="./index.html" aria-current="page">Home</a></li>
+            <li><a href="./releases.html">Releases</a></li>
+            <li><a href="./get-started.html">Get Started</a></li>
+            <li><a href="./support.html">Support</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <h1><span data-config-text="appName">Up-Skill</span> Mobile App</h1>
+            <p class="muted" data-config-text="tagline">Secure sessions, quick subscriptions, and smooth credit management.</p>
+            <div class="badges">
+              <span class="badge latest">Latest</span>
+              <span class="badge">Android</span>
+              <span class="badge">iOS</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn store-btn" data-platform="android" data-config-link="playStoreUrl" href="https://play.google.com/store" aria-label="Get Up-Skill on Google Play">Get it on Google Play</a>
+              <a class="btn store-btn" data-platform="ios" data-config-link="appStoreUrl" href="https://www.apple.com/app-store/" aria-label="Download Up-Skill on the App Store">Download on the App Store</a>
+              <a class="btn btn-secondary" href="./open.html">Smart download link</a>
+            </div>
+          </div>
+          <aside class="surface panel" aria-label="Quick install options">
+            <h2>Install from one link</h2>
+            <p class="muted">Share one URL and let users land on the right store automatically.</p>
+            <div class="qr-placeholder" id="qr-placeholder">QR placeholder<br />Use this for posters, receipts, and support messages.</div>
+            <p class="muted">Universal link: <strong id="open-link-text">./open.html</strong></p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <h2>What the app does</h2>
+          <div class="grid-3">
+            <article class="card">
+              <h3>Fast sign-in sessions</h3>
+              <p class="muted">Authenticate quickly with code or QR flow, then continue seamlessly.</p>
+            </article>
+            <article class="card">
+              <h3>M-PESA powered payments</h3>
+              <p class="muted">Buy plans and credits with real-time status updates inside the app.</p>
+            </article>
+            <article class="card">
+              <h3>Version-safe updates</h3>
+              <p class="muted">Clear update prompts and release notes keep users on supported versions.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container grid-2">
+          <article class="surface panel">
+            <h2>Latest version</h2>
+            <p><strong id="latest-version">v1.0.0</strong> · <span id="latest-date">2026-02-17</span></p>
+            <p class="muted" id="latest-highlights">Stability improvements, faster startup, and update prompt enhancements.</p>
+            <a class="btn btn-secondary" href="./releases.html">View full release notes</a>
+          </article>
+          <article class="surface panel">
+            <h2>How it works</h2>
+            <div class="steps">
+              <div class="step"><div>Install from your app store.</div></div>
+              <div class="step"><div>Sign in and create your secure session.</div></div>
+              <div class="step"><div>Buy credits via M-PESA when needed.</div></div>
+              <div class="step"><div>Track balance and manage profile from the dashboard.</div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <small>© <span id="year">2026</span> <span data-config-text="appName">Up-Skill</span></small>
+        <nav aria-label="Footer">
+          <ul class="nav-links">
+            <li><a href="./releases.html">Releases</a></li>
+            <li><a href="./get-started.html">Get Started</a></li>
+            <li><a href="./support.html">Support</a></li>
+            <li><a data-config-link="privacyUrl" href="./privacy.html">Privacy</a></li>
+            <li><a data-config-link="termsUrl" href="./terms.html">Terms</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

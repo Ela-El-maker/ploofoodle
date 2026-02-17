@@ -10,9 +10,15 @@ use Ploofoodle\Controllers\AdminDashboardController;
 use Ploofoodle\Controllers\AdminAuditController;
 use Ploofoodle\Controllers\AdminConfigController;
 use Ploofoodle\Controllers\AdminReleaseController;
+use Ploofoodle\Controllers\AdminFrontLandingController;
 use Ploofoodle\Controllers\MobileBootstrapController;
 use Ploofoodle\Controllers\MobileUpdateController;
 use Ploofoodle\Controllers\HealthController;
+use Ploofoodle\Controllers\PublicAppLandingController;
+use Ploofoodle\Controllers\PublicAppOpenController;
+use Ploofoodle\Controllers\PublicAppReleasesController;
+use Ploofoodle\Controllers\PublicAppGetStartedController;
+use Ploofoodle\Controllers\PublicAppSupportController;
 
 $router = new Router();
 
@@ -41,6 +47,18 @@ $router->post('/admin/releases/delete', [AdminReleaseController::class, 'delete'
 
 $router->get('/admin/audit', [AdminAuditController::class, 'index']);
 $router->get('/admin/audit/view', [AdminAuditController::class, 'view']);
+
+$router->get('/admin/front-landing', [AdminFrontLandingController::class, 'landing']);
+$router->get('/admin/front-landing/get-started', [AdminFrontLandingController::class, 'getStarted']);
+$router->get('/admin/front-landing/support', [AdminFrontLandingController::class, 'support']);
+$router->post('/admin/front-landing/save', [AdminFrontLandingController::class, 'saveOrPublish']);
+
+$router->get('/app', [PublicAppLandingController::class, 'show']);
+$router->get('/app/open', [PublicAppOpenController::class, 'show']);
+$router->get('/app/releases', [PublicAppReleasesController::class, 'show']);
+$router->get('/app/releases/notes', [PublicAppReleasesController::class, 'notes']);
+$router->get('/app/get-started', [PublicAppGetStartedController::class, 'show']);
+$router->get('/app/support', [PublicAppSupportController::class, 'show']);
 
 $router->get('/mobile/bootstrap', [MobileBootstrapController::class, 'show']);
 $router->get('/mobile/update', [MobileUpdateController::class, 'show']);

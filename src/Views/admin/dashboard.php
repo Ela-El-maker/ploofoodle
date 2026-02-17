@@ -31,6 +31,7 @@ ob_start();
   <div class="btn-row">
     <a class="btn primary" href="<?= htmlspecialchars(ploo_route_url('/admin/config'), ENT_QUOTES, 'UTF-8') ?>">Edit Bootstrap Config</a>
     <a class="btn secondary" href="<?= htmlspecialchars(ploo_route_url('/admin/releases'), ENT_QUOTES, 'UTF-8') ?>">Manage Releases</a>
+    <a class="btn secondary" href="<?= htmlspecialchars(ploo_route_url('/admin/front-landing'), ENT_QUOTES, 'UTF-8') ?>">Front Landing Page</a>
     <a class="btn secondary" href="<?= htmlspecialchars(ploo_route_url('/admin/audit'), ENT_QUOTES, 'UTF-8') ?>">View Audit Log</a>
   </div>
 </section>

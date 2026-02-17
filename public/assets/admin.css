@@ -132,6 +132,7 @@ textarea { min-height: 120px; resize: vertical; }
 .badge.draft { background: #fef3c7; color: #92400e; }
 .badge.soft { background: #dbeafe; color: #1d4ed8; }
 .badge.hard { background: #fee2e2; color: #991b1b; }
+.badge.info { background: #e0f2fe; color: #075985; }
 .badge.env { background: #ecfeff; color: #0f766e; }
 
 .warning {
@@ -159,6 +160,31 @@ textarea { min-height: 120px; resize: vertical; }
   margin-top: var(--space-4);
   padding-top: var(--space-3);
   border-top: 1px dashed var(--border);
+}
+
+.front-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 8px 0 12px;
+}
+
+.front-tab {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.front-tab.active {
+  border-color: #93c5fd;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 600;
 }
 
 .config-section h4 {

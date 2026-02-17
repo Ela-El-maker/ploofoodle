@@ -10,6 +10,11 @@ Minimal PHP admin system for managing mobile bootstrap config and update metadat
 - Public read endpoints:
   - `GET {base_path}/index.php?_route=/mobile/bootstrap&platform=android&channel=stable`
   - `GET {base_path}/index.php?_route=/mobile/update&platform=android&channel=stable`
+  - `GET {base_path}/index.php?_route=/app`
+  - `GET {base_path}/index.php?_route=/app/open&platform=android&channel=stable`
+  - `GET {base_path}/index.php?_route=/app/releases&platform=android&channel=stable`
+  - `GET {base_path}/index.php?_route=/app/get-started`
+  - `GET {base_path}/index.php?_route=/app/support`
   - `GET {base_path}/index.php?_route=/health`
 
 `{base_path}` is auto-detected from `SCRIPT_NAME` (works for local/live), or can be overridden via `PLOOFOODLE_BASE_PATH`.
@@ -24,6 +29,10 @@ Minimal PHP admin system for managing mobile bootstrap config and update metadat
 - `POST {base_path}/index.php?_route=/admin/config`
 - `GET {base_path}/index.php?_route=/admin/releases`
 - `POST {base_path}/index.php?_route=/admin/releases`
+- `GET {base_path}/index.php?_route=/admin/front-landing`
+- `GET {base_path}/index.php?_route=/admin/front-landing/get-started`
+- `GET {base_path}/index.php?_route=/admin/front-landing/support`
+- `POST {base_path}/index.php?_route=/admin/front-landing/save`
 
 ## Public endpoint behavior
 
@@ -75,6 +84,11 @@ Apply manually (in order):
 2. `sql/002_admin_config_bundle.sql`
 3. `sql/003_admin_update_manifest.sql`
 4. `sql/004_admin_audit_log.sql`
+5. `sql/005_admin_update_manifest_source.sql`
+6. `sql/006_admin_web_content_bundle.sql`
+7. Optional seeds:
+   - `sql/900_seed_dummy_data.sql`
+   - `sql/901_seed_web_content_dummy_data.sql`
 
 ## Notes
 
@@ -84,3 +98,5 @@ Apply manually (in order):
 Documentation
 
 - All non-README documentation has been moved into the `docs/` folder. See `docs/` for architecture and go-live checklist items.
+- Live readiness automation:
+  - `./Ploofoodle/scripts/go_live_readiness_check.sh --mode prod Plonkadoodle/.env`

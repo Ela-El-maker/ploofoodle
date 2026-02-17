@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Up-Skill App | Smart Download</title>
+    <meta name="description" content="Smart app redirect to Google Play or App Store with a safe fallback." />
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script defer src="./assets/app.js"></script>
+  </head>
+  <body data-page="open">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="./index.html">Up-Skill</a>
+        <nav aria-label="Primary">
+          <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./releases.html">Releases</a></li>
+            <li><a href="./get-started.html">Get Started</a></li>
+            <li><a href="./support.html">Support</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="section">
+      <div class="container">
+        <section class="surface panel">
+          <h1>Taking you to the app download page</h1>
+          <p class="muted" id="redirect-status">Detecting your device and preparing redirect...</p>
+          <p>If redirect does not happen automatically, choose your store manually:</p>
+          <div class="cta-row">
+            <a id="manual-play-btn" class="btn store-btn" data-platform="android" data-config-link="playStoreUrl" href="https://play.google.com/store">Get it on Google Play</a>
+            <a id="manual-ios-btn" class="btn store-btn" data-platform="ios" data-config-link="appStoreUrl" href="https://www.apple.com/app-store/">Download on the App Store</a>
+            <a class="btn btn-secondary" href="./index.html">Back to app home</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <small>Need help? <a href="./support.html">Contact support</a></small>
+      </div>
+    </footer>
+  </body>
+</html>

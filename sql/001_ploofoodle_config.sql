@@ -4,3 +4,5 @@
 --   002_admin_config_bundle.sql
 --   003_admin_update_manifest.sql
 --   004_admin_audit_log.sql
+--   005_admin_update_manifest_source.sql
+--   006_admin_web_content_bundle.sql
